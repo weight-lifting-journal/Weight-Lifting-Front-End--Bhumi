@@ -67,6 +67,7 @@ function NavBar(props) {
           </div>
         </Toolbar>
       </AppBar>
+      <div style={{ paddingBottom: 120 }} />
     </React.Fragment>
   );
 }

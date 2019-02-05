@@ -42,7 +42,11 @@ const styles = theme => ({
     marginTop: theme.spacing.unit
   },
   submit: {
-    marginTop: theme.spacing.unit * 3
+    marginTop: theme.spacing.unit * 3,
+    marginBottom: theme.spacing.unit * 3
+  },
+  pushRight: {
+    marginLeft: 10
   }
 });
 
@@ -128,10 +132,7 @@ class SignUp extends React.Component {
                 autoComplete="current-password"
               />
             </FormControl>
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
+
             <Button
               type="submit"
               fullWidth
@@ -145,7 +146,7 @@ class SignUp extends React.Component {
             <div>
               <p>
                 Already have an account?
-                <span>
+                <span className={classes.pushRight}>
                   <Link to="/">Sign In</Link>
                 </span>
               </p>
