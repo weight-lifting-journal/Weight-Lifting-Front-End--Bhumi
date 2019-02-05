@@ -18,7 +18,7 @@ const Header = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 50px 0 20px;
+  margin-top: 50px;
 `;
 const H1 = styled.h1`
   font-size: 50px;

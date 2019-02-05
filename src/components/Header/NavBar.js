@@ -7,9 +7,19 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
-import SearchIcon from "@material-ui/icons/Search";
-import MoreIcon from "@material-ui/icons/MoreVert";
+// import SearchIcon from "@material-ui/icons/Search";
 import MenuDropdown from "./MenuDropdown";
+import styled from "styled-components";
+
+const H1 = styled.h1`
+  font-size: 30px;
+  margin-left: 20px;
+`;
+
+const Header = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
 const styles = theme => ({
   text: {
@@ -52,17 +62,21 @@ function NavBar(props) {
 
       <AppBar position="fixed" color="primary" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
-          <MenuDropdown />
+          <Header>
+            <img
+              src="https://img.icons8.com/ios/50/000000/weightlift-filled.png"
+              atl="Weight Lifting Image"
+            />
+            <H1>FitMe </H1>
+          </Header>
 
           <Fab color="secondary" aria-label="Add" className={classes.fabButton}>
             <AddIcon />
           </Fab>
           <div>
+            <IconButton color="inherit">{/* <SearchIcon /> */}</IconButton>
             <IconButton color="inherit">
-              <SearchIcon />
-            </IconButton>
-            <IconButton color="inherit">
-              <MoreIcon />
+              <MenuDropdown />
             </IconButton>
           </div>
         </Toolbar>
