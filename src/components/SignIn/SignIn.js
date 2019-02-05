@@ -12,6 +12,11 @@ import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+const ErrorMessage = styled.p`
+  color: red;
+`;
 
 const styles = theme => ({
   main: {
@@ -55,7 +60,8 @@ class SignIn extends React.Component {
     super(props);
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      errorMessage: null
     };
   }
 
@@ -72,13 +78,18 @@ class SignIn extends React.Component {
     const endpoint =
       "https://weightliftingjournallambda.herokuapp.com/users/login";
     axios
-      .post(endpoint, this.state)
+      .post(endpoint, {
+        email: this.state.email,
+        password: this.state.password
+      })
       .then(res => {
         console.log(res.data);
         localStorage.setItem("jwt", res.data.token);
-        this.props.history.push("/home");
+        this.props.history.push("/workouts");
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        this.setState({ errorMessage: err.response.data.message });
+      });
   };
 
   render() {
@@ -103,6 +114,9 @@ class SignIn extends React.Component {
           </Typography>
 
           <form onSubmit={this.handleSubmit} className={classes.form}>
+            {this.state.errorMessage && (
+              <ErrorMessage>ERROR: {this.state.errorMessage}</ErrorMessage>
+            )}
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="email">Email Address</InputLabel>
               <Input

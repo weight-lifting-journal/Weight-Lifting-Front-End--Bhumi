@@ -12,6 +12,15 @@ import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+const Header = styled.div`
+  display: flex;
+`;
+
+const ErrorMessage = styled.p`
+  color: red;
+`;
 
 const styles = theme => ({
   main: {
@@ -56,7 +65,8 @@ class SignUp extends React.Component {
     this.state = {
       email: "",
       username: "",
-      password: ""
+      password: "",
+      errorMessage: null
     };
   }
 
@@ -72,14 +82,21 @@ class SignUp extends React.Component {
     e.preventDefault();
     const endpoint =
       "https://weightliftingjournallambda.herokuapp.com/users/register";
+
     axios
-      .post(endpoint, this.state)
+      .post(endpoint, {
+        email: this.state.email,
+        username: this.state.username,
+        password: this.state.password
+      })
       .then(res => {
         console.log(res.data);
         localStorage.setItem("jwt", res.data.token);
-        this.props.history.push("/");
+        this.props.history.push("/workouts");
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        this.setState({ errorMessage: err.response.data.message });
+      });
   };
 
   render() {
@@ -88,19 +105,27 @@ class SignUp extends React.Component {
     return (
       <main className={classes.main}>
         <CssBaseline />
-        <div className="header">
+        <div className="header" />
+
+        <Header>
           <img
-            src="https://img.icons8.com/office/50/000000/book.png"
-            alt="Journal Icon"
+            src="https://img.icons8.com/ios/50/000000/weightlift-filled.png"
+            atl="Weight Lifting Image"
           />
-          <h1>Fit Me </h1>
-        </div>
+          <h1>FitMe </h1>
+        </Header>
+
+        <span> Sign up now to track and organize your workouts. </span>
+
         <Paper className={classes.paper}>
           <Typography component="h1" variant="h5">
             Sign Up
           </Typography>
 
           <form onSubmit={this.handleSubmit} className={classes.form}>
+            {this.state.errorMessage && (
+              <ErrorMessage>ERROR: {this.state.errorMessage}</ErrorMessage>
+            )}
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="email">Email Address</InputLabel>
               <Input
@@ -147,7 +172,7 @@ class SignUp extends React.Component {
               <p>
                 Already have an account?
                 <span className={classes.pushRight}>
-                  <Link to="/">Sign In</Link>
+                  <Link to="/sign-in">Sign In</Link>
                 </span>
               </p>
             </div>
