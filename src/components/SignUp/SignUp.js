@@ -16,6 +16,13 @@ import styled from "styled-components";
 
 const Header = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0 20px;
+`;
+const H1 = styled.h1`
+  font-size: 50px;
+  margin-left: 20px;
 `;
 
 const ErrorMessage = styled.p`
@@ -105,14 +112,12 @@ class SignUp extends React.Component {
     return (
       <main className={classes.main}>
         <CssBaseline />
-        <div className="header" />
-
         <Header>
           <img
             src="https://img.icons8.com/ios/50/000000/weightlift-filled.png"
             atl="Weight Lifting Image"
           />
-          <h1>FitMe </h1>
+          <H1>FitMe </H1>
         </Header>
 
         <span> Sign up now to track and organize your workouts. </span>
