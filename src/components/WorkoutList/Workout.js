@@ -11,7 +11,7 @@ import { Link as RouterLink } from "react-router-dom";
 
 const Workout = props => {
   const { id, region, date } = props.workout;
-  const { numOfExercises } = props;
+  const { numOfExercises, deleteWorkout } = props;
 
   return (
     <ListItem
@@ -25,7 +25,7 @@ const Workout = props => {
             />
             <ListItemSecondaryAction>
               <IconButton aria-label="Delete">
-                <DeleteIcon />
+                <DeleteIcon onClick={e => deleteWorkout(e, id)} />
               </IconButton>
             </ListItemSecondaryAction>
           </RouterLink>

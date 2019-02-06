@@ -18,6 +18,7 @@ const WorkoutList = props => {
             <Workout
               key={workout.id}
               workout={workout}
+              deleteWorkout={props.deleteWorkout}
               numOfExercises={
                 props.exercises.filter(exercise => {
                   return exercise.journalId === workout.id;

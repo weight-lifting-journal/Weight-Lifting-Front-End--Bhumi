@@ -9,6 +9,8 @@ import Typography from "@material-ui/core/Typography";
 import NavBar from "../Header/NavBar";
 import styled from "styled-components";
 
+const Header = styled.div``;
+
 const ExercisesWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -38,20 +40,22 @@ class WorkoutDetails extends Component {
     return (
       <div>
         <NavBar />
-        <Typography gutterBottom variant="h4">
-          {region}
-        </Typography>
-        <Typography gutterBottom variant="h6">
-          {date}
-        </Typography>
+        <Header>
+          <Typography gutterBottom variant="h4">
+            {region}
+          </Typography>
+          <Typography gutterBottom variant="h6">
+            {date}
+          </Typography>
+        </Header>
         <ExercisesWrapper>
           {this.props.exercises
             .filter(exercise => {
               return exercise.journalId === id;
             })
-            .map(exercise => {
+            .map((exercise, index) => {
               return (
-                <CardWrapper>
+                <CardWrapper key={index}>
                   <Card>
                     <CardContent>
                       <Typography gutterBottom variant="h5" component="h2">

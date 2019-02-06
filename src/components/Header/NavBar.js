@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import PropTypes from "prop-types";
+import { Route } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -11,6 +11,8 @@ import AddIcon from "@material-ui/icons/Add";
 import MenuDropdown from "./MenuDropdown";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import WorkoutsForm from "../Forms/WorkoutsForm";
+import ExerciseForm from "../Forms/ExerciseForm";
 
 const H1 = styled.h1`
   font-size: 30px;
@@ -55,42 +57,83 @@ const styles = theme => ({
   }
 });
 
-function NavBar(props) {
-  const { classes } = props;
-  return (
-    <React.Fragment>
-      <CssBaseline />
+class NavBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false
+    };
+  }
 
-      <AppBar position="fixed" color="primary" className={classes.appBar}>
-        <Toolbar className={classes.toolbar}>
-          <Header>
-            <Link to="/workouts">
-              <img
-                src="https://img.icons8.com/ios/50/000000/weightlift-filled.png"
-                atl="Weight Lifting Image"
-              />
-            </Link>
-            <H1>FitMe </H1>
-          </Header>
+  handleClickOpen = () => {
+    this.setState({
+      open: true
+    });
+  };
+  handleClose = () => {
+    this.setState({ open: false });
+  };
 
-          <Fab color="secondary" aria-label="Add" className={classes.fabButton}>
-            <AddIcon />
-          </Fab>
-          <div>
-            <IconButton color="inherit">{/* <SearchIcon /> */}</IconButton>
-            <IconButton color="inherit">
-              <MenuDropdown />
-            </IconButton>
-          </div>
-        </Toolbar>
-      </AppBar>
-      <div style={{ paddingBottom: 120 }} />
-    </React.Fragment>
-  );
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <React.Fragment>
+        <CssBaseline />
+
+        <AppBar position="fixed" color="primary" className={classes.appBar}>
+          <Toolbar className={classes.toolbar}>
+            <Header>
+              <Link to="/workouts">
+                <img
+                  src="https://img.icons8.com/ios/50/000000/weightlift-filled.png"
+                  atl="Weight Lifting Image"
+                />
+              </Link>
+              <H1>FitMe </H1>
+            </Header>
+
+            <Fab
+              color="secondary"
+              aria-label="Add"
+              className={classes.fabButton}
+              onClick={this.handleClickOpen}
+            >
+              <AddIcon />
+            </Fab>
+            <Route
+              exact
+              path="/workouts"
+              render={routeProps => (
+                <WorkoutsForm
+                  {...routeProps}
+                  open={this.state.open}
+                  onClose={this.handleClose}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/workout/:id"
+              render={routeProps => (
+                <ExerciseForm
+                  {...routeProps}
+                  open={this.state.open}
+                  onClose={this.handleClose}
+                />
+              )}
+            />
+            <div>
+              <IconButton color="inherit">
+                <MenuDropdown />
+              </IconButton>
+            </div>
+          </Toolbar>
+        </AppBar>
+        <div style={{ paddingBottom: 120 }} />
+      </React.Fragment>
+    );
+  }
 }
-
-NavBar.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 export default withStyles(styles)(NavBar);
