@@ -7,10 +7,10 @@ import FormControl from "@material-ui/core/FormControl";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import Button from "@material-ui/core/Button";
-import { addWorkout } from "../../store/actions";
+import { addExercise } from "../../store/actions";
 import { connect } from "react-redux";
 
-class WorkoutsForm extends React.Component {
+class ExerciseForm extends React.Component {
   state = {
     name: ""
   };
@@ -26,9 +26,14 @@ class WorkoutsForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     console.log("SAVE === ", this.state);
-    this.props.addExercise(this.state).then(() => {
-      this.handleClose();
-    });
+    this.props
+      .addExercise({
+        ...this.state,
+        journalId: this.props.match.params.id
+      })
+      .then(() => {
+        this.handleClose();
+      });
   };
 
   handleClose = () => {
@@ -37,6 +42,7 @@ class WorkoutsForm extends React.Component {
   };
 
   render() {
+    console.log("Exerise FOrm", this.props.match);
     const { onClose, ...other } = this.props;
 
     return (
@@ -105,5 +111,5 @@ class WorkoutsForm extends React.Component {
 
 export default connect(
   null,
-  { addWorkout }
-)(WorkoutsForm);
+  { addExercise }
+)(ExerciseForm);

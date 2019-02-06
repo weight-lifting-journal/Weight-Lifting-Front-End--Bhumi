@@ -1,8 +1,11 @@
 import axios from "axios";
 
+// ================================ WORKOUTS & EXERCISES ====================
 export const FETCHING_WORKOUTS = "FETCHING_WORKOUTS";
 export const FETCHING_WORKOUTS_SUCCESS = "FETCHING_WORKOUTS_SUCCESS";
 export const FETCHING_WORKOUTS_FAILURE = "FETCHING_WORKOUTS_FAILURE";
+
+// ================================ WORKOUTS ====================
 export const ADD_WORKOUT_START = "ADD_WORKOUTS_START";
 export const ADD_WORKOUT_SUCCESS = "ADD_WORKOUTS_SUCCESS";
 export const ADD_WORKOUT_FAILURE = "ADD_WORKOUTS_FAILURE";

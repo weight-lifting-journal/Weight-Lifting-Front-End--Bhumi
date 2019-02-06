@@ -7,7 +7,10 @@ import {
   ADD_WORKOUT_FAILURE,
   DELETE_WORKOUT_START,
   DELETE_WORKOUT_SUCCESS,
-  DELETE_WORKOUT_FAILURE
+  DELETE_WORKOUT_FAILURE,
+  ADD_EXERCISE_START,
+  ADD_EXERCISE_SUCCESS,
+  ADD_EXERCISE_FAILURE
 } from "../actions";
 
 const initialState = {
@@ -16,6 +19,7 @@ const initialState = {
   isFetchingWorkouts: false,
   isAddingWorkout: false,
   isDeletingWorkout: false,
+  isAddingExercise: false,
   error: null
 };
 
@@ -74,6 +78,21 @@ const WorkoutsReducer = (state = initialState, action) => {
         isDeletingWorkout: false,
         error: action.payload
       };
+
+    // ================================ ADD EXERCISE ====================
+    case ADD_WORKOUT_START:
+      return { ...state, isAddingWorkout: true, error: null };
+
+    case ADD_WORKOUT_SUCCESS:
+      return {
+        ...state,
+        exercises: [...state.exercises, action.payload],
+        isAddingWorkout: false,
+        error: null
+      };
+
+    case ADD_WORKOUT_FAILURE:
+      return { ...state, isAddingWorkout: false, error: action.payload };
 
     default:
       return state;

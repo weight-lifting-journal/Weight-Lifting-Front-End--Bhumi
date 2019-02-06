@@ -30,10 +30,10 @@ class WorkoutsForm extends React.Component {
     this.props.addWorkout(this.state).then(() => {
       this.handleClose();
     });
+    this.setState({ region: "", date: "" });
   };
 
   handleClose = () => {
-    console.log("calling props on close");
     this.props.onClose();
   };
 

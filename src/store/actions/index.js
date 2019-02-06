@@ -12,3 +12,10 @@ export {
   addWorkout,
   deleteWorkout
 } from "./workoutsAction";
+
+export {
+  ADD_EXERCISE_START,
+  ADD_EXERCISE_SUCCESS,
+  ADD_EXERCISE_FAILURE,
+  addExercise
+} from "./exerciseAction";

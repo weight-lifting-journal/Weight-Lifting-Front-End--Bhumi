@@ -7,7 +7,6 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
-// import SearchIcon from "@material-ui/icons/Search";
 import MenuDropdown from "./MenuDropdown";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
