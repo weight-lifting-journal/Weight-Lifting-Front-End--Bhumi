@@ -25,11 +25,10 @@ class ExerciseForm extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log("SAVE === ", this.state);
     this.props
       .addExercise({
         ...this.state,
-        journalId: this.props.match.params.id
+        journalId: Number(this.props.match.params.id)
       })
       .then(() => {
         this.handleClose();
@@ -37,12 +36,10 @@ class ExerciseForm extends React.Component {
   };
 
   handleClose = () => {
-    console.log("calling props on close");
     this.props.onClose();
   };
 
   render() {
-    console.log("Exerise FOrm", this.props.match);
     const { onClose, ...other } = this.props;
 
     return (

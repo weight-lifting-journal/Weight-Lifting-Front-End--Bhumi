@@ -17,5 +17,9 @@ export {
   ADD_EXERCISE_START,
   ADD_EXERCISE_SUCCESS,
   ADD_EXERCISE_FAILURE,
-  addExercise
+  DELETE_EXERCISE_START,
+  DELETE_EXERCISE_SUCCESS,
+  DELETE_EXERCISE_FAILURE,
+  addExercise,
+  deleteExercise
 } from "./exerciseAction";

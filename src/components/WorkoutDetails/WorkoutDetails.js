@@ -12,6 +12,7 @@ const ExercisesWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  flex-wrap: wrap;
 `;
 const CardWrapper = styled.div`
   min-width: 300px;

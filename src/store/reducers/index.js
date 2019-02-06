@@ -20,6 +20,7 @@ const initialState = {
   isAddingWorkout: false,
   isDeletingWorkout: false,
   isAddingExercise: false,
+  isDeletingExercise: false,
   error: null
 };
 
@@ -80,19 +81,19 @@ const WorkoutsReducer = (state = initialState, action) => {
       };
 
     // ================================ ADD EXERCISE ====================
-    case ADD_WORKOUT_START:
-      return { ...state, isAddingWorkout: true, error: null };
+    case ADD_EXERCISE_START:
+      return { ...state, isAddingExercise: true, error: null };
 
-    case ADD_WORKOUT_SUCCESS:
+    case ADD_EXERCISE_SUCCESS:
       return {
         ...state,
         exercises: [...state.exercises, action.payload],
-        isAddingWorkout: false,
+        isAddingExercise: false,
         error: null
       };
 
-    case ADD_WORKOUT_FAILURE:
-      return { ...state, isAddingWorkout: false, error: action.payload };
+    case ADD_EXERCISE_FAILURE:
+      return { ...state, isAddingExercise: false, error: action.payload };
 
     default:
       return state;
