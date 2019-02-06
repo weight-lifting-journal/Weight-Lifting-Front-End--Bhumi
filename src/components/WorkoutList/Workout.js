@@ -10,14 +10,19 @@ import { Link as RouterLink } from "react-router-dom";
 // import Avatar from "@material-ui/core/Avatar";
 
 const Workout = props => {
-  const { workout, id } = props.workout;
+  const { id, region, date } = props.workout;
+  const { numOfExercises } = props;
+
   return (
     <ListItem
       button
       component={props => {
         return (
           <RouterLink to={`/workout/${id}`} {...props}>
-            <ListItemText primary={workout.region} secondary={workout.date} />
+            <ListItemText
+              primary={`${region} (${numOfExercises})`}
+              secondary={date}
+            />
             <ListItemSecondaryAction>
               <IconButton aria-label="Delete">
                 <DeleteIcon />

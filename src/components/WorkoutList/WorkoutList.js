@@ -14,7 +14,17 @@ const WorkoutList = props => {
     <WorkoutListWrapper>
       <List>
         {props.workouts.map(workout => {
-          return <Workout key={workout.id} workout={workout} />;
+          return (
+            <Workout
+              key={workout.id}
+              workout={workout}
+              numOfExercises={
+                props.exercises.filter(exercise => {
+                  return exercise.journalId === workout.id;
+                }).length
+              }
+            />
+          );
         })}
       </List>
     </WorkoutListWrapper>

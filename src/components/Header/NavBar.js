@@ -10,6 +10,7 @@ import AddIcon from "@material-ui/icons/Add";
 // import SearchIcon from "@material-ui/icons/Search";
 import MenuDropdown from "./MenuDropdown";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const H1 = styled.h1`
   font-size: 30px;
@@ -63,10 +64,12 @@ function NavBar(props) {
       <AppBar position="fixed" color="primary" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
           <Header>
-            <img
-              src="https://img.icons8.com/ios/50/000000/weightlift-filled.png"
-              atl="Weight Lifting Image"
-            />
+            <Link to="/workouts">
+              <img
+                src="https://img.icons8.com/ios/50/000000/weightlift-filled.png"
+                atl="Weight Lifting Image"
+              />
+            </Link>
             <H1>FitMe </H1>
           </Header>
 

@@ -7,20 +7,22 @@ import { Provider } from "react-redux";
 import { applyMiddleware, createStore } from "redux";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
-//import rootReducer from "./store/reducers";
+import rootReducer from "./store/reducers";
 
-// const store = createStore(rootReducer, applyMiddleware(thunk, logger));
-
-// ReactDOM.render(
-//   <Provider store={store}>
-//     <App />
-//   </Provider>,
-//   document.getElementById("root")
-// );
+const store = createStore(rootReducer, applyMiddleware(thunk, logger));
 
 ReactDOM.render(
-  <Router>
-    <App />
-  </Router>,
+  <Provider store={store}>
+    <Router>
+      <App />
+    </Router>
+  </Provider>,
   document.getElementById("root")
 );
+
+// ReactDOM.render(
+//   <Router>
+//     <App />
+//   </Router>,
+//   document.getElementById("root")
+// );

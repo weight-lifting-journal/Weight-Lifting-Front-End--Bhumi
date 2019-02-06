@@ -5,6 +5,5 @@ export {
   DELETE_WORKOUTS_START,
   DELETE_WORKOUTS_SUCCESS,
   DELETE_WORKOUTS_FAILURE,
-  getWorkouts,
-  deleteWorkouts
+  getWorkouts
 } from "./workoutsAction";
