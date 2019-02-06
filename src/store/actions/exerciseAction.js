@@ -43,11 +43,10 @@ export const deleteExercise = exercise => {
     dispatch({ type: DELETE_EXERCISE_START });
 
     return axios
-      .post(
+      .delete(
         `${baseUrl}/workouts/${exercise.journalId}/exercises/${
           exercise.exerciseId
         }`,
-        exercise,
         {
           headers: { Authorization: localStorage.getItem("jwt") }
         }
@@ -55,7 +54,7 @@ export const deleteExercise = exercise => {
       .then(res => {
         dispatch({
           type: DELETE_EXERCISE_SUCCESS,
-          payload: {}
+          payload: { ...exercise }
         });
       })
       .catch(error =>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getWorkouts } from "../../store/actions";
+import { getWorkouts, deleteExercise } from "../../store/actions";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
@@ -32,6 +32,8 @@ class WorkoutDetails extends Component {
   componentDidMount() {
     this.props.getWorkouts();
   }
+
+  deleteExercise = exercise => this.props.deleteExercise(exercise);
 
   render() {
     const workout = this.props.workouts.find(workout => {
@@ -66,6 +68,7 @@ class WorkoutDetails extends Component {
                     <CardContent>
                       <DeleteBtn>
                         <Button
+                          onClick={() => this.deleteExercise(exercise)}
                           size="xs"
                           padding="0"
                           margin="0"
@@ -111,5 +114,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getWorkouts }
+  { getWorkouts, deleteExercise }
 )(WorkoutDetails);

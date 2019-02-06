@@ -10,7 +10,10 @@ import {
   DELETE_WORKOUT_FAILURE,
   ADD_EXERCISE_START,
   ADD_EXERCISE_SUCCESS,
-  ADD_EXERCISE_FAILURE
+  ADD_EXERCISE_FAILURE,
+  DELETE_EXERCISE_START,
+  DELETE_EXERCISE_SUCCESS,
+  DELETE_EXERCISE_FAILURE
 } from "../actions";
 
 const initialState = {
@@ -95,6 +98,27 @@ const WorkoutsReducer = (state = initialState, action) => {
     case ADD_EXERCISE_FAILURE:
       return { ...state, isAddingExercise: false, error: action.payload };
 
+    // ================================ DELETE EXERCISE ====================
+    case DELETE_EXERCISE_START:
+      return { ...state, isDeletingExercise: true, error: null };
+
+    case DELETE_EXERCISE_SUCCESS:
+      console.log(action.payload);
+      return {
+        ...state,
+        exercises: state.exercises.filter(exercise => {
+          return exercise.id !== Number(action.payload.id);
+        }),
+        isDeletingExercise: false,
+        error: null
+      };
+
+    case DELETE_EXERCISE_FAILURE:
+      return {
+        ...state,
+        isDeletingExercise: false,
+        error: action.payload
+      };
     default:
       return state;
   }
