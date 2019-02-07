@@ -5,6 +5,9 @@ import {
   ADD_WORKOUT_START,
   ADD_WORKOUT_SUCCESS,
   ADD_WORKOUT_FAILURE,
+  UPDATE_WORKOUT_START,
+  UPDATE_WORKOUT_SUCCESS,
+  UPDATE_WORKOUT_FAILURE,
   DELETE_WORKOUT_START,
   DELETE_WORKOUT_SUCCESS,
   DELETE_WORKOUT_FAILURE,
@@ -21,6 +24,7 @@ const initialState = {
   exercises: [],
   isFetchingWorkouts: false,
   isAddingWorkout: false,
+  isUpdatingWorkout: false,
   isDeletingWorkout: false,
   isAddingExercise: false,
   isDeletingExercise: false,
@@ -28,8 +32,6 @@ const initialState = {
 };
 
 const WorkoutsReducer = (state = initialState, action) => {
-  console.log("reducer", action);
-
   switch (action.type) {
     // ================================ GET WORKOUTS ====================
     case FETCHING_WORKOUTS:
@@ -61,6 +63,31 @@ const WorkoutsReducer = (state = initialState, action) => {
 
     case ADD_WORKOUT_FAILURE:
       return { ...state, isAddingWorkout: false, error: action.payload };
+
+    // ================================ UPDATE WORKOUT ====================
+    case UPDATE_WORKOUT_START:
+      return { ...state, isUpdatingWorkout: true, error: null };
+
+    case UPDATE_WORKOUT_SUCCESS:
+      return {
+        ...state,
+        workouts: state.workouts.map(workout => {
+          if (workout.id === action.payload.id) {
+            return action.payload;
+          } else {
+            return workout;
+          }
+        }),
+        isUpdatingWorkout: false,
+        error: null
+      };
+
+    case UPDATE_WORKOUT_FAILURE:
+      return {
+        ...state,
+        isUpdatingWorkout: false,
+        error: action.payload
+      };
 
     // ================================ DELETE WORKOUT ====================
     case DELETE_WORKOUT_START:

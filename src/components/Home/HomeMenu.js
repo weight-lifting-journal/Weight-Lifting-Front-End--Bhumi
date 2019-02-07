@@ -45,7 +45,7 @@ function MenuDropdown() {
                   src="https://img.icons8.com/ios/16/000000/password.png"
                   alt="Login Icon"
                 />
-                <div> Login </div>
+                <div> Sign In </div>
               </MenuItem>
               <MenuItem
                 onClick={handleClose}

@@ -52,7 +52,7 @@ const Home = () => {
       <div>
         <img
           src="https://img.icons8.com/ios/150/000000/weightlift-filled.png"
-          atl="Weight Lifting Image"
+          alt="Weight Lifting"
         />
       </div>
       <Header>

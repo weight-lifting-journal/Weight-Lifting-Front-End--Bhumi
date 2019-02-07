@@ -7,14 +7,18 @@ import FormControl from "@material-ui/core/FormControl";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import Button from "@material-ui/core/Button";
-import { addWorkout } from "../../store/actions";
+import { addWorkout, updateWorkout } from "../../store/actions";
 import { connect } from "react-redux";
 
 class WorkoutsForm extends React.Component {
-  state = {
-    region: "",
-    date: ""
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      region: props.isUpdating ? props.workout.region : "",
+      date: props.isUpdating ? props.workout.date : ""
+    };
+  }
 
   handleChanges = e => {
     e.preventDefault();
@@ -26,14 +30,27 @@ class WorkoutsForm extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log("SAVE === ", this.state);
-    this.props.addWorkout(this.state).then(() => {
-      this.handleClose();
-    });
-    this.setState({ region: "", date: "" });
+
+    if (this.props.isUpdating) {
+      this.props
+        .updateWorkout({
+          ...this.state,
+          id: this.props.workout.id
+        })
+        .then(() => {
+          this.setState({ region: "", date: "" });
+          this.handleClose();
+        });
+    } else {
+      this.props.addWorkout(this.state).then(() => {
+        this.setState({ region: "", date: "" });
+        this.handleClose();
+      });
+    }
   };
 
   handleClose = () => {
+    this.setState({ region: "", date: "" });
     this.props.onClose();
   };
 
@@ -47,7 +64,9 @@ class WorkoutsForm extends React.Component {
         {...other}
       >
         <DialogTitle id="simple-dialog-title">
-          Create Workout Journal
+          {this.props.isUpdating
+            ? "Edit Workout Journal"
+            : "Create Workout Journal"}
         </DialogTitle>
         <DialogContent>
           <form onSubmit={this.handleSubmit}>
@@ -86,5 +105,5 @@ class WorkoutsForm extends React.Component {
 
 export default connect(
   null,
-  { addWorkout }
+  { addWorkout, updateWorkout }
 )(WorkoutsForm);

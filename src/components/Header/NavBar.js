@@ -1,5 +1,5 @@
-import React, { Fragment } from "react";
-import { Route } from "react-router-dom";
+import React from "react";
+import { Route, withRouter, Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -7,15 +7,14 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
-import MenuDropdown from "./MenuDropdown";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import WorkoutsForm from "../Forms/WorkoutsForm";
 import ExerciseForm from "../Forms/ExerciseForm";
 
 const H1 = styled.h1`
   font-size: 30px;
   margin-left: 20px;
+  color: white;
 `;
 
 const Header = styled.div`
@@ -82,15 +81,15 @@ class NavBar extends React.Component {
 
         <AppBar position="fixed" color="primary" className={classes.appBar}>
           <Toolbar className={classes.toolbar}>
-            <Header>
-              <Link to="/workouts">
+            <Link to="/workouts" style={{ textDecoration: "none" }}>
+              <Header>
                 <img
                   src="https://img.icons8.com/ios/50/000000/weightlift-filled.png"
-                  atl="Weight Lifting Image"
+                  alt="Weight Lifting"
                 />
-              </Link>
-              <H1>FitMe </H1>
-            </Header>
+                <H1>FitMe </H1>
+              </Header>
+            </Link>
 
             <Fab
               color="secondary"
@@ -123,8 +122,15 @@ class NavBar extends React.Component {
               )}
             />
             <div>
-              <IconButton color="inherit">
-                <MenuDropdown />
+              <IconButton
+                color="inherit"
+                onClick={() => {
+                  console.log(this.props);
+                  localStorage.removeItem("jwt");
+                  this.props.history.push("/");
+                }}
+              >
+                <i className="material-icons">exit_to_app</i>
               </IconButton>
             </div>
           </Toolbar>
@@ -135,4 +141,4 @@ class NavBar extends React.Component {
   }
 }
 
-export default withStyles(styles)(NavBar);
+export default withStyles(styles)(withRouter(NavBar));

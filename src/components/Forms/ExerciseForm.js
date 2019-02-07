@@ -31,6 +31,7 @@ class ExerciseForm extends React.Component {
         journalId: Number(this.props.match.params.id)
       })
       .then(() => {
+        this.setState({ name: "", sets: null, reps: null, weight: "" });
         this.handleClose();
       });
   };

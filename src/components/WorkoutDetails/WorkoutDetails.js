@@ -33,7 +33,10 @@ class WorkoutDetails extends Component {
     this.props.getWorkouts();
   }
 
-  deleteExercise = exercise => this.props.deleteExercise(exercise);
+  deleteExercise = (e, exercise) => {
+    e.preventDefault();
+    this.props.deleteExercise(exercise);
+  };
 
   render() {
     const workout = this.props.workouts.find(workout => {
@@ -45,6 +48,9 @@ class WorkoutDetails extends Component {
     }
 
     const { id, region, date } = workout;
+    const workoutExercises = this.props.exercises.filter(exercise => {
+      return exercise.journalId === id;
+    });
 
     return (
       <div>
@@ -56,19 +62,18 @@ class WorkoutDetails extends Component {
           {date}
         </Typography>
 
-        <ExercisesWrapper>
-          {this.props.exercises
-            .filter(exercise => {
-              return exercise.journalId === id;
-            })
-            .map((exercise, index) => {
+        {workoutExercises.length === 0 ? (
+          "No exercises added"
+        ) : (
+          <ExercisesWrapper>
+            {workoutExercises.map((exercise, index) => {
               return (
                 <CardWrapper key={index}>
                   <Card>
                     <CardContent>
                       <DeleteBtn>
                         <Button
-                          onClick={() => this.deleteExercise(exercise)}
+                          onClick={e => this.deleteExercise(e, exercise)}
                           size="xs"
                           padding="0"
                           margin="0"
@@ -83,13 +88,13 @@ class WorkoutDetails extends Component {
                       </Typography>
                       <hr />
                       <Typography component="p">
-                        Weight: {exercise.weight}
+                        Reps: {exercise.reps}
                       </Typography>
                       <Typography component="p">
                         Sets: {exercise.sets}
                       </Typography>
                       <Typography component="p">
-                        Reps: {exercise.reps}
+                        Weights: {exercise.weight} lbs
                       </Typography>
                     </CardContent>
                     <EditBtn>
@@ -101,7 +106,8 @@ class WorkoutDetails extends Component {
                 </CardWrapper>
               );
             })}
-        </ExercisesWrapper>
+          </ExercisesWrapper>
+        )}
       </div>
     );
   }
