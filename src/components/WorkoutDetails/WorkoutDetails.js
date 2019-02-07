@@ -7,6 +7,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import NavBar from "../Header/NavBar";
 import styled from "styled-components";
+import ExerciseForm from "../Forms/ExerciseForm";
 
 const ExercisesWrapper = styled.div`
   display: flex;
@@ -29,10 +30,19 @@ const EditBtn = styled.div`
 `;
 
 class WorkoutDetails extends Component {
+  state = {
+    isFormOpen: false
+  };
   componentDidMount() {
     this.props.getWorkouts();
   }
 
+  handleShowEdit = id => {
+    this.setState({
+      exercise: this.props.exercises.find(exercise => exercise.id === id),
+      isFormOpen: true
+    });
+  };
   deleteExercise = (e, exercise) => {
     e.preventDefault();
     this.props.deleteExercise(exercise);
@@ -44,7 +54,7 @@ class WorkoutDetails extends Component {
     });
 
     if (!workout) {
-      return null;
+      return <h1>Workout not found</h1>;
     }
 
     const { id, region, date } = workout;
@@ -74,7 +84,7 @@ class WorkoutDetails extends Component {
                       <DeleteBtn>
                         <Button
                           onClick={e => this.deleteExercise(e, exercise)}
-                          size="xs"
+                          size="small"
                           padding="0"
                           margin="0"
                           color="primary"
@@ -98,7 +108,14 @@ class WorkoutDetails extends Component {
                       </Typography>
                     </CardContent>
                     <EditBtn>
-                      <Button size="small" color="primary">
+                      <Button
+                        onClick={e => {
+                          e.preventDefault();
+                          this.handleShowEdit(exercise.id);
+                        }}
+                        size="small"
+                        color="primary"
+                      >
                         Edit
                       </Button>
                     </EditBtn>
@@ -107,6 +124,14 @@ class WorkoutDetails extends Component {
               );
             })}
           </ExercisesWrapper>
+        )}
+        {this.state.isFormOpen && (
+          <ExerciseForm
+            exercise={this.state.exercise}
+            isUpdating={true}
+            open={true}
+            onClose={() => this.setState({ isFormOpen: false })}
+          />
         )}
       </div>
     );

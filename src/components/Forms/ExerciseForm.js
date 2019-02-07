@@ -7,14 +7,19 @@ import FormControl from "@material-ui/core/FormControl";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import Button from "@material-ui/core/Button";
-import { addExercise } from "../../store/actions";
+import { addExercise, updateExercise } from "../../store/actions";
 import { connect } from "react-redux";
 
 class ExerciseForm extends React.Component {
-  state = {
-    name: ""
-  };
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: props.isUpdating ? props.exercise.name : "",
+      sets: props.isUpdating ? props.exercise.sets : 0,
+      reps: props.isUpdating ? props.exercise.reps : 0,
+      weight: props.isUpdating ? props.exercise.weight : ""
+    };
+  }
   handleChanges = e => {
     e.preventDefault();
     const { name, value } = e.target;
@@ -25,15 +30,29 @@ class ExerciseForm extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props
-      .addExercise({
-        ...this.state,
-        journalId: Number(this.props.match.params.id)
-      })
-      .then(() => {
-        this.setState({ name: "", sets: null, reps: null, weight: "" });
-        this.handleClose();
-      });
+
+    if (this.props.isUpdating) {
+      this.props
+        .updateExercise({
+          ...this.state,
+          journalId: this.props.exercise.journalId,
+          id: this.props.exercise.id
+        })
+        .then(() => {
+          this.setState({ name: "", sets: 0, reps: 0, weight: "" });
+          this.handleClose();
+        });
+    } else {
+      this.props
+        .addExercise({
+          ...this.state,
+          journalId: Number(this.props.match.params.id)
+        })
+        .then(() => {
+          this.setState({ name: "", sets: 0, reps: 0, weight: "" });
+          this.handleClose();
+        });
+    }
   };
 
   handleClose = () => {
@@ -41,16 +60,17 @@ class ExerciseForm extends React.Component {
   };
 
   render() {
-    const { onClose, ...other } = this.props;
-
+    console.log(this.props);
     return (
       <Dialog
         onClose={this.handleClose}
         aria-labelledby="simple-dialog-title"
-        {...other}
+        open={this.props.open}
         maxWidth="xs"
       >
-        <DialogTitle id="simple-dialog-title">Create Exercise</DialogTitle>
+        <DialogTitle id="simple-dialog-title">
+          {this.props.isUpdating ? "Edit Exercise" : "Create Exercise"}
+        </DialogTitle>
         <DialogContent>
           <form onSubmit={this.handleSubmit}>
             <FormControl margin="normal" required fullWidth>
@@ -97,7 +117,7 @@ class ExerciseForm extends React.Component {
 
             <DialogActions>
               <Button type="submit" variant="contained" color="primary">
-                Add
+                {this.props.isUpdating ? "Update" : "Add"}
               </Button>
             </DialogActions>
           </form>
@@ -109,5 +129,5 @@ class ExerciseForm extends React.Component {
 
 export default connect(
   null,
-  { addExercise }
+  { addExercise, updateExercise }
 )(ExerciseForm);

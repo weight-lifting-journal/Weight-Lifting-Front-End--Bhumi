@@ -55,13 +55,11 @@ class WorkoutsForm extends React.Component {
   };
 
   render() {
-    const { onClose, ...other } = this.props;
-
     return (
       <Dialog
         onClose={this.handleClose}
         aria-labelledby="simple-dialog-title"
-        {...other}
+        open={this.props.open}
       >
         <DialogTitle id="simple-dialog-title">
           {this.props.isUpdating
@@ -93,7 +91,7 @@ class WorkoutsForm extends React.Component {
 
             <DialogActions>
               <Button type="submit" variant="contained" color="primary">
-                Add
+                {this.props.isUpdating ? "Update" : "Add"}
               </Button>
             </DialogActions>
           </form>

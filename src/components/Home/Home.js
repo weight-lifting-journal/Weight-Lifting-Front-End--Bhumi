@@ -57,7 +57,7 @@ const Home = () => {
       </div>
       <Header>
         <H1>FitMe</H1>
-        <span> Sign up now to track and organize your workouts. </span>
+        <span> Easy way to track and organize your workouts. </span>
       </Header>
 
       <Link to="/sign-up">
