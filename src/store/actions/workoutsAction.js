@@ -65,8 +65,33 @@ export const deleteWorkout = id => dispatch => {
     .delete(`${baseUrl}/workouts/${id}`, {
       headers: { Authorization: localStorage.getItem("jwt") }
     })
-    .then(response => {
+    .then(res => {
       dispatch({ type: DELETE_WORKOUT_SUCCESS, payload: id });
     })
     .catch(error => dispatch({ type: DELETE_WORKOUT_FAILURE, payload: error }));
+};
+
+// // ================================ UPDATE WORKOUT ====================
+export const updateWorkout = workout => {
+  return dispatch => {
+    dispatch({ type: UPDATE_WORKOUT_START });
+
+    return axios
+      .put(`${baseUrl}/workouts/${workout.id}`, workout, {
+        headers: { Authorization: localStorage.getItem("jwt") }
+      })
+      .then(res => {
+        dispatch({
+          type: UPDATE_WORKOUT_SUCCESS,
+          payload: {
+            ...workout,
+            ...res.data
+          }
+        });
+      })
+      .catch(error => {
+        dispatch({ type: UPDATE_WORKOUT_FAILURE, payload: error });
+        throw error;
+      });
+  };
 };

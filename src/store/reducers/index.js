@@ -24,6 +24,7 @@ const initialState = {
   exercises: [],
   isFetchingWorkouts: false,
   isAddingWorkout: false,
+  isUpdatingWorkout: false,
   isDeletingWorkout: false,
   isAddingExercise: false,
   isDeletingExercise: false,
@@ -64,6 +65,31 @@ const WorkoutsReducer = (state = initialState, action) => {
 
     case ADD_WORKOUT_FAILURE:
       return { ...state, isAddingWorkout: false, error: action.payload };
+
+    // ================================ UPDATE WORKOUT ====================
+    case UPDATE_WORKOUT_START:
+      return { ...state, isUpdatingWorkout: true, error: null };
+
+    case UPDATE_WORKOUT_SUCCESS:
+      return {
+        ...state,
+        workouts: state.workouts.map(workout => {
+          if (workout.id === action.payload.id) {
+            return action.payload;
+          } else {
+            return workout;
+          }
+        }),
+        isUpdatingWorkout: false,
+        error: null
+      };
+
+    case UPDATE_WORKOUT_FAILURE:
+      return {
+        ...state,
+        isUpdatingWorkout: false,
+        error: action.payload
+      };
 
     // ================================ DELETE WORKOUT ====================
     case DELETE_WORKOUT_START:

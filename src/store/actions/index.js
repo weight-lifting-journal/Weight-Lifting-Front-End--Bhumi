@@ -13,7 +13,7 @@ export {
   DELETE_WORKOUT_FAILURE,
   getWorkouts,
   addWorkout,
-  // updateWorkouts,
+  updateWorkout,
   deleteWorkout
 } from "./workoutsAction";
 

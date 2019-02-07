@@ -7,7 +7,6 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
-import MenuDropdown from "./MenuDropdown";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import WorkoutsForm from "../Forms/WorkoutsForm";
@@ -16,7 +15,6 @@ import ExerciseForm from "../Forms/ExerciseForm";
 const H1 = styled.h1`
   font-size: 30px;
   margin-left: 20px;
-  text-decoration: none;
   color: white;
 `;
 
@@ -84,7 +82,7 @@ class NavBar extends React.Component {
 
         <AppBar position="fixed" color="primary" className={classes.appBar}>
           <Toolbar className={classes.toolbar}>
-            <Link to="/workouts">
+            <Link to="/workouts" style={{ textDecoration: "none" }}>
               <Header>
                 <img
                   src="https://img.icons8.com/ios/50/000000/weightlift-filled.png"
@@ -126,7 +124,7 @@ class NavBar extends React.Component {
             />
             <div>
               <IconButton color="inherit">
-                <MenuDropdown />
+                <i class="material-icons">exit_to_app</i>
               </IconButton>
             </div>
           </Toolbar>
