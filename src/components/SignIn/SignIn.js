@@ -112,7 +112,7 @@ class SignIn extends React.Component {
         <Header>
           <img
             src="https://img.icons8.com/ios/50/000000/weightlift-filled.png"
-            atl="Weight Lifting Image"
+            alt="Weight Lifting"
           />
           <H1>FitMe </H1>
         </Header>

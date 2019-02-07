@@ -22,6 +22,7 @@ class WorkoutListView extends React.Component {
           workouts={this.props.workouts}
           exercises={this.props.exercises}
           deleteWorkout={this.deleteWorkout}
+          isFetchingWorkouts={this.props.isFetchingWorkouts}
         />
       </div>
     );
@@ -30,7 +31,8 @@ class WorkoutListView extends React.Component {
 
 const mapStateToProps = state => ({
   workouts: state.workouts,
-  exercises: state.exercises
+  exercises: state.exercises,
+  isFetchingWorkouts: state.isFetchingWorkouts
 });
 
 export default connect(

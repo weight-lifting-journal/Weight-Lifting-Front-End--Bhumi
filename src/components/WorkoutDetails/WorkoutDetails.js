@@ -48,6 +48,9 @@ class WorkoutDetails extends Component {
     }
 
     const { id, region, date } = workout;
+    const workoutExercises = this.props.exercises.filter(exercise => {
+      return exercise.journalId === id;
+    });
 
     return (
       <div>
@@ -59,12 +62,11 @@ class WorkoutDetails extends Component {
           {date}
         </Typography>
 
-        <ExercisesWrapper>
-          {this.props.exercises
-            .filter(exercise => {
-              return exercise.journalId === id;
-            })
-            .map((exercise, index) => {
+        {workoutExercises.length === 0 ? (
+          "No exercises added"
+        ) : (
+          <ExercisesWrapper>
+            {workoutExercises.map((exercise, index) => {
               return (
                 <CardWrapper key={index}>
                   <Card>
@@ -86,13 +88,13 @@ class WorkoutDetails extends Component {
                       </Typography>
                       <hr />
                       <Typography component="p">
-                        Weight: {exercise.weight}
+                        Reps: {exercise.reps}
                       </Typography>
                       <Typography component="p">
                         Sets: {exercise.sets}
                       </Typography>
                       <Typography component="p">
-                        Reps: {exercise.reps}
+                        Weights: {exercise.weight} lbs
                       </Typography>
                     </CardContent>
                     <EditBtn>
@@ -104,7 +106,8 @@ class WorkoutDetails extends Component {
                 </CardWrapper>
               );
             })}
-        </ExercisesWrapper>
+          </ExercisesWrapper>
+        )}
       </div>
     );
   }

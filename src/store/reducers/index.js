@@ -32,8 +32,6 @@ const initialState = {
 };
 
 const WorkoutsReducer = (state = initialState, action) => {
-  console.log("reducer", action);
-
   switch (action.type) {
     // ================================ GET WORKOUTS ====================
     case FETCHING_WORKOUTS:

@@ -1,5 +1,5 @@
-import React, { Fragment } from "react";
-import { Route } from "react-router-dom";
+import React from "react";
+import { Route, withRouter, Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -8,7 +8,6 @@ import IconButton from "@material-ui/core/IconButton";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import WorkoutsForm from "../Forms/WorkoutsForm";
 import ExerciseForm from "../Forms/ExerciseForm";
 
@@ -86,7 +85,7 @@ class NavBar extends React.Component {
               <Header>
                 <img
                   src="https://img.icons8.com/ios/50/000000/weightlift-filled.png"
-                  atl="Weight Lifting Image"
+                  alt="Weight Lifting"
                 />
                 <H1>FitMe </H1>
               </Header>
@@ -123,8 +122,15 @@ class NavBar extends React.Component {
               )}
             />
             <div>
-              <IconButton color="inherit">
-                <i class="material-icons">exit_to_app</i>
+              <IconButton
+                color="inherit"
+                onClick={() => {
+                  console.log(this.props);
+                  localStorage.removeItem("jwt");
+                  this.props.history.push("/");
+                }}
+              >
+                <i className="material-icons">exit_to_app</i>
               </IconButton>
             </div>
           </Toolbar>
@@ -135,4 +141,4 @@ class NavBar extends React.Component {
   }
 }
 
-export default withStyles(styles)(NavBar);
+export default withStyles(styles)(withRouter(NavBar));

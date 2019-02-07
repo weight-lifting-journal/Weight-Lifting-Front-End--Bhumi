@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import FormControl from "@material-ui/core/FormControl";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import Paper from "@material-ui/core/Paper";
@@ -115,7 +113,7 @@ class SignUp extends React.Component {
         <Header>
           <img
             src="https://img.icons8.com/ios/50/000000/weightlift-filled.png"
-            atl="Weight Lifting Image"
+            alt="Weight Lifting"
           />
           <H1>FitMe </H1>
         </Header>
