@@ -5,7 +5,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import NavBar from "../Header/NavBar";
+import JournalNavBar from "../Header/JournalNavBar";
 import styled from "styled-components";
 import ExerciseForm from "../Forms/ExerciseForm";
 
@@ -64,7 +64,7 @@ class WorkoutDetails extends Component {
 
     return (
       <div>
-        <NavBar />
+        <JournalNavBar />
         <Typography gutterBottom variant="h4">
           {region}
         </Typography>
