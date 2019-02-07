@@ -14,6 +14,9 @@ import {
   ADD_EXERCISE_START,
   ADD_EXERCISE_SUCCESS,
   ADD_EXERCISE_FAILURE,
+  UPDATE_EXERCISE_START,
+  UPDATE_EXERCISE_SUCCESS,
+  UPDATE_EXERCISE_FAILURE,
   DELETE_EXERCISE_START,
   DELETE_EXERCISE_SUCCESS,
   DELETE_EXERCISE_FAILURE
@@ -27,6 +30,7 @@ const initialState = {
   isUpdatingWorkout: false,
   isDeletingWorkout: false,
   isAddingExercise: false,
+  isUpdatingExercise: false,
   isDeletingExercise: false,
   error: null
 };
@@ -124,6 +128,31 @@ const WorkoutsReducer = (state = initialState, action) => {
 
     case ADD_EXERCISE_FAILURE:
       return { ...state, isAddingExercise: false, error: action.payload };
+
+    // ================================ UPDATE EXERCISE ====================
+    case UPDATE_EXERCISE_START:
+      return { ...state, isUpdatingExercise: true, error: null };
+
+    case UPDATE_EXERCISE_SUCCESS:
+      return {
+        ...state,
+        exercises: state.exercises.map(exercise => {
+          if (exercise.id === action.payload.id) {
+            return action.payload;
+          } else {
+            return exercise;
+          }
+        }),
+        isUpdatingExercise: false,
+        error: null
+      };
+
+    case UPDATE_EXERCISE_FAILURE:
+      return {
+        ...state,
+        isUpdatingExercise: false,
+        error: action.payload
+      };
 
     // ================================ DELETE EXERCISE ====================
     case DELETE_EXERCISE_START:
