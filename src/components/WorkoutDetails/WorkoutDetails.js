@@ -14,6 +14,7 @@ const ExercisesWrapper = styled.div`
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
+  margin-top: 25px;
 `;
 const CardWrapper = styled.div`
   min-width: 300px;
@@ -65,10 +66,8 @@ class WorkoutDetails extends Component {
     return (
       <div>
         <JournalNavBar />
-        <Typography gutterBottom variant="h4">
-          {region}
-        </Typography>
-        <Typography gutterBottom variant="h6">
+        <Typography variant="h4">{region}</Typography>
+        <Typography gutterBottom component="p">
           {date}
         </Typography>
 

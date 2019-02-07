@@ -10,7 +10,7 @@ const Main = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100vh;
-  padding: 40px;
+  padding: 30px 50px;
   color: white;
 `;
 
