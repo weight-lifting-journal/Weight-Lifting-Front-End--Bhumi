@@ -33,7 +33,10 @@ class WorkoutDetails extends Component {
     this.props.getWorkouts();
   }
 
-  deleteExercise = exercise => this.props.deleteExercise(exercise);
+  deleteExercise = (e, exercise) => {
+    e.preventDefault();
+    this.props.deleteExercise(exercise);
+  };
 
   render() {
     const workout = this.props.workouts.find(workout => {
@@ -68,7 +71,7 @@ class WorkoutDetails extends Component {
                     <CardContent>
                       <DeleteBtn>
                         <Button
-                          onClick={() => this.deleteExercise(exercise)}
+                          onClick={e => this.deleteExercise(e, exercise)}
                           size="xs"
                           padding="0"
                           margin="0"

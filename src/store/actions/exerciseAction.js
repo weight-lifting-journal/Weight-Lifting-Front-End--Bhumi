@@ -44,14 +44,13 @@ export const deleteExercise = exercise => {
 
     return axios
       .delete(
-        `${baseUrl}/workouts/${exercise.journalId}/exercises/${
-          exercise.exerciseId
-        }`,
+        `${baseUrl}/workouts/${exercise.journalId}/exercises/${exercise.id}`,
         {
           headers: { Authorization: localStorage.getItem("jwt") }
         }
       )
       .then(res => {
+        console.log(res);
         dispatch({
           type: DELETE_EXERCISE_SUCCESS,
           payload: { ...exercise }

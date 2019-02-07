@@ -5,11 +5,15 @@ export {
   ADD_WORKOUT_START,
   ADD_WORKOUT_SUCCESS,
   ADD_WORKOUT_FAILURE,
+  UPDATE_WORKOUT_START,
+  UPDATE_WORKOUT_SUCCESS,
+  UPDATE_WORKOUT_FAILURE,
   DELETE_WORKOUT_START,
   DELETE_WORKOUT_SUCCESS,
   DELETE_WORKOUT_FAILURE,
   getWorkouts,
   addWorkout,
+  // updateWorkouts,
   deleteWorkout
 } from "./workoutsAction";
 
