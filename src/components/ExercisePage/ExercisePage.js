@@ -15,10 +15,11 @@ const ExercisesWrapper = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   margin-top: 30px;
+  padding: 0 10px;
 `;
 const CardWrapper = styled.div`
   min-width: 300px;
-  margin: 10px 20px;
+  margin: 10px;
 `;
 
 const DeleteBtn = styled.div`
