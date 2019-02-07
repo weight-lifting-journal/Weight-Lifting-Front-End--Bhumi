@@ -14,7 +14,7 @@ const ExercisesWrapper = styled.div`
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 25px;
+  margin-top: 30px;
 `;
 const CardWrapper = styled.div`
   min-width: 300px;
@@ -72,7 +72,7 @@ class WorkoutDetails extends Component {
         </Typography>
 
         {workoutExercises.length === 0 ? (
-          "No exercises added"
+          <ExercisesWrapper> No exercises added</ExercisesWrapper>
         ) : (
           <ExercisesWrapper>
             {workoutExercises.map((exercise, index) => {

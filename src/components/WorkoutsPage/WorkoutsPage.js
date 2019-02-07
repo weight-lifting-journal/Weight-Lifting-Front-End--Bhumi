@@ -1,8 +1,8 @@
 import React from "react";
-import JournalNavBar from "../components/Header/JournalNavBar";
+import JournalNavBar from "../Header/JournalNavBar";
 import { connect } from "react-redux";
-import { getWorkouts, deleteWorkout } from "../store/actions";
-import WorkoutList from "../components/WorkoutList/WorkoutList";
+import { getWorkouts, deleteWorkout } from "../../store/actions";
+import WorkoutList from "./WorkoutList";
 
 class WorkoutListView extends React.Component {
   componentDidMount() {
