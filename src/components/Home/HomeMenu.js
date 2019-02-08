@@ -6,6 +6,11 @@ import toRenderProps from "recompose/toRenderProps";
 import IconButton from "@material-ui/core/IconButton";
 import withState from "recompose/withState";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+const Span = styled.div`
+  padding: 5px;
+`;
 
 const WithState = toRenderProps(withState("anchorEl", "updateAnchorEl", null));
 
@@ -45,7 +50,7 @@ function MenuDropdown() {
                   src="https://img.icons8.com/ios/16/000000/password.png"
                   alt="Login Icon"
                 />
-                <div> Sign In </div>
+                <Span> Sign In </Span>
               </MenuItem>
               <MenuItem
                 onClick={handleClose}
@@ -55,7 +60,7 @@ function MenuDropdown() {
                   src="https://img.icons8.com/ios/20/000000/add-user-male.png"
                   alt="Sign-up Icon"
                 />
-                <div>Sign Up</div>
+                <Span> Sign Up </Span>
               </MenuItem>
             </Menu>
           </React.Fragment>

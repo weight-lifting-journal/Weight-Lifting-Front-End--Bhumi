@@ -11,17 +11,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-
-const Header = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 50px 0 20px;
-`;
-const H1 = styled.h1`
-  font-size: 50px;
-  margin-left: 20px;
-`;
+import SignInSignUpHeader from "../Header/SignInSignUpHeader";
 
 const ErrorMessage = styled.p`
   color: red;
@@ -40,7 +30,7 @@ const styles = theme => ({
     }
   },
   paper: {
-    marginTop: theme.spacing.unit * 8,
+    marginTop: theme.spacing.unit * 4,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -110,13 +100,7 @@ class SignUp extends React.Component {
     return (
       <main className={classes.main}>
         <CssBaseline />
-        <Header>
-          <img
-            src="https://img.icons8.com/ios/50/000000/weightlift-filled.png"
-            alt="Weight Lifting"
-          />
-          <H1>FitMe </H1>
-        </Header>
+        <SignInSignUpHeader />
 
         <span> Sign up now to track and organize your workouts. </span>
 

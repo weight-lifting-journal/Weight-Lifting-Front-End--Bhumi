@@ -60,7 +60,6 @@ class ExerciseForm extends React.Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <Dialog
         onClose={this.handleClose}

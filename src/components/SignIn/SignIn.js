@@ -13,17 +13,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-
-const Header = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 50px;
-`;
-const H1 = styled.h1`
-  font-size: 50px;
-  margin-left: 20px;
-`;
+import SignInSignUpHeader from "../Header/SignInSignUpHeader";
 
 const ErrorMessage = styled.p`
   color: red;
@@ -35,6 +25,7 @@ const styles = theme => ({
     display: "block", // Fix IE 11 issue.
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
+
     [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
       width: 400,
       marginLeft: "auto",
@@ -42,7 +33,7 @@ const styles = theme => ({
     }
   },
   paper: {
-    marginTop: theme.spacing.unit * 8,
+    marginTop: theme.spacing.unit * 2,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -109,13 +100,9 @@ class SignIn extends React.Component {
     return (
       <main className={classes.main}>
         <CssBaseline />
-        <Header>
-          <img
-            src="https://img.icons8.com/ios/50/000000/weightlift-filled.png"
-            alt="Weight Lifting"
-          />
-          <H1>FitMe </H1>
-        </Header>
+
+        <SignInSignUpHeader />
+
         <Paper className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />

@@ -1,8 +1,8 @@
 import React from "react";
-import NavBar from "../components/Header/NavBar";
+import JournalNavBar from "../Header/JournalNavBar";
 import { connect } from "react-redux";
-import { getWorkouts, deleteWorkout } from "../store/actions";
-import WorkoutList from "../components/WorkoutList/WorkoutList";
+import { getWorkouts, deleteWorkout } from "../../store/actions";
+import WorkoutList from "./WorkoutList";
 
 class WorkoutListView extends React.Component {
   componentDidMount() {
@@ -17,7 +17,7 @@ class WorkoutListView extends React.Component {
   render() {
     return (
       <div>
-        <NavBar />
+        <JournalNavBar />
         <WorkoutList
           workouts={this.props.workouts}
           exercises={this.props.exercises}

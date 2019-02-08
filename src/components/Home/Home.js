@@ -3,13 +3,14 @@ import img from "../img/backgroundImg.png";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HomeMenu from "./HomeMenu";
+import logo from "../img/logo.png";
 
 const Main = styled.div`
   background-image: url(${img});
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
-  padding: 40px;
+  min-height: 100vh;
+  padding: 30px 50px;
   color: white;
 `;
 
@@ -18,28 +19,29 @@ const Nav = styled.div`
   padding-right: 30px;
   margin-bottom: 40px;
 `;
-
 const Header = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   margin-bottom: 20px;
 `;
 
-const H1 = styled.h1`
-  margin-top: 40px;
-  margin-bottom: 10px;
-  font-size: 50px;
+const Img = styled.img`
+  width: 400px;
 `;
 
 const Buttom = styled.button`
   font-size: 14px;
   padding: 10px;
   border-radius: 5px;
-  background-color: purple;
+  background-color: #47508f;
   border: none;
   color: white;
   &: hover {
     cursor: pointer;
     background-color: white;
-    color: purple;
+    color: #47508f;
   }
 `;
 
@@ -49,14 +51,8 @@ const Home = () => {
       <Nav>
         <HomeMenu />
       </Nav>
-      <div>
-        <img
-          src="https://img.icons8.com/ios/150/000000/weightlift-filled.png"
-          alt="Weight Lifting"
-        />
-      </div>
       <Header>
-        <H1>FitMe</H1>
+        <Img src={logo} alt="FitMe Logo" />
         <span> Easy way to track and organize your workouts. </span>
       </Header>
 

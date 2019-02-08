@@ -10,16 +10,15 @@ import AddIcon from "@material-ui/icons/Add";
 import styled from "styled-components";
 import WorkoutsForm from "../Forms/WorkoutsForm";
 import ExerciseForm from "../Forms/ExerciseForm";
-
-const H1 = styled.h1`
-  font-size: 30px;
-  margin-left: 20px;
-  color: white;
-`;
+import logo from "../img/logo.png";
 
 const Header = styled.div`
   display: flex;
   align-items: center;
+`;
+
+const Img = styled.img`
+  width: 130px;
 `;
 
 const styles = theme => ({
@@ -39,7 +38,8 @@ const styles = theme => ({
   },
   appBar: {
     top: 0,
-    bottom: "auto"
+    bottom: "auto",
+    backgroundColor: "#47508F"
   },
   toolbar: {
     alignItems: "center",
@@ -48,14 +48,15 @@ const styles = theme => ({
   fabButton: {
     position: "absolute",
     zIndex: 1,
-    bottom: -30,
+    bottom: -18,
     left: 0,
     right: 0,
-    margin: "0 auto"
+    margin: "0 auto",
+    backgroundColor: "#2e3141"
   }
 });
 
-class NavBar extends React.Component {
+class JournalNavBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -81,19 +82,16 @@ class NavBar extends React.Component {
 
         <AppBar position="fixed" color="primary" className={classes.appBar}>
           <Toolbar className={classes.toolbar}>
-            <Link to="/workouts" style={{ textDecoration: "none" }}>
+            <Link to="/workouts">
               <Header>
-                <img
-                  src="https://img.icons8.com/ios/50/000000/weightlift-filled.png"
-                  alt="Weight Lifting"
-                />
-                <H1>FitMe </H1>
+                <Img src={logo} alt="FitMe Logo" />
               </Header>
             </Link>
 
             <Fab
               color="secondary"
               aria-label="Add"
+              size="small"
               className={classes.fabButton}
               onClick={this.handleClickOpen}
             >
@@ -135,10 +133,10 @@ class NavBar extends React.Component {
             </div>
           </Toolbar>
         </AppBar>
-        <div style={{ paddingBottom: 120 }} />
+        <div style={{ paddingBottom: 130 }} />
       </React.Fragment>
     );
   }
 }
 
-export default withStyles(styles)(withRouter(NavBar));
+export default withStyles(styles)(withRouter(JournalNavBar));

@@ -9,6 +9,7 @@ const WorkoutListWrapper = styled.div`
   width: 70%;
   margin: 0 auto;
   background-color: white;
+  border-radius: 5px;
 `;
 
 const LoaderWrapper = styled.div`
